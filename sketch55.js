@@ -9,7 +9,7 @@ let sliderMean;
 var para;
 let h1;
 let Curves;
-let pageNum = 0;
+let pageNum = 20;
 // let redArrow;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,6 +31,7 @@ function setup() {
   canvas = createCanvas(900, 900);
   canvas.position(20, 65);
   background(50);
+
   push(), noStroke(), fill(255, 127, 80);
   rect(0, 0, 900, 10);
   //rect(0,890,900,10);
@@ -70,7 +71,7 @@ function setup() {
   para = createP("Upon following this trail I found 41 images related to the subject of Shungas, which means Picture of Spring. Shunga usually appear in woodblock print format and have a pretty interesting history. They reached their height of production in the early 1600s and contrary to popular belief were acquired by both men and women, and by people of all socio-economic classes. Samurai’s often carried Shungas with them to battle for their ability to ward off death, buildings kept them in stock in order to ward off fire, and couples got them to enhance fertility. With this knowledge it is very clear that these images served a wide variety of audiences and might take a variety of forms. Many of the images range from scenes of battle to more fantastical portrayals of sexual acts that are not necessarily based in reality. There has been an extensive history of government’s trying to make it illegal despide its widespread production. According to one account from 1859, westerns described the presentation of Shunga as vile and degrading. ").addClass('BigTextBox');
   ////////IMAGE ARROW 
   para.position(950, 180);
-  para2 = createP("Data sourced from the Smithsonian Institution Freer and Sackler Gallery National Museums of Asian Art<br/> Images are protected by strict copyright law and their commercial use is <b>not</b> allowed. For more info regarding the data used please visit github.io/Dalbed349/MS1Quant").addClass('dataDetails');
+  para2 = createP('Data sourced from the Smithsonian Institution Freer and Sackler Gallery National Museums of Asian Art<br/> Images are protected by strict copyright law and their commercial use is <b>not</b> allowed. For more info regarding the data used please visit <a href="url"> https://dalbed349.github.io/QualitativeProjectMajorStudio1/ </a> ').addClass('dataDetails');
   para2.position(1000, 930);
   // para3 = createP()
   // para3.position()
@@ -89,17 +90,17 @@ function setup() {
 
 
   createP('<b>Try for yourself!</b> ').addClass('TryItOut');
-  createP('Adjust the sliders to adjust the display of images!').addClass('TryItOutInfo');
+  createP('Move the sliders to adjust the display of images!').addClass('TryItOutInfo');
   //mean slider
-  createP('This slider controls the overall (mean) value of images that will be selected. <br/> Further to the right will include images rated <b>higher</b> on the "Erotic Content Scale"').addClass('sliderLabel');
+  createP('This slider controls the overall (mean) value of images that will be selected. <br/> Further to the right will include images rated <b>higher</b> on the "Erotic Content Scale".').addClass('sliderLabel');
   sliderMean = createSlider(1, 10, 1, .1);
-  sliderMean.position(950, 700);
+  sliderMean.position(950, 740);
   sliderMean.style('width', '200px');
 
   //SD slider
-  createP('This slider affects the range of images that can be selected. <br/>Further to the right will select a wider variety of image ratings').addClass('sliderLabel2');
+  createP('This slider affects the range of images that can be selected. <br/>Further to the right will select from a wider variety of image ratings.').addClass('sliderLabel2');
   sliderSD = createSlider(.1, 2.5, 1, .1);
-  sliderSD.position(950, 800);
+  sliderSD.position(950, 840);
   sliderSD.style('width', '200px');
   ///////////////////////////////////////////////////END DOM MANIPULATIONS 
   // TEST WITH RANDOM DATA
@@ -209,39 +210,22 @@ function mouseClicked() {
   pop();
 ////////////Page Turn
 
-pageNum++;
+pageNum--;
 console.log(pageNum)
- if(pageNum>5){
-    pageNum = 0;
-    push();
-    stroke(200,100,50);
+ if(pageNum<0){
+    pageNum = 20;
+    strokeWeight(2)
+    stroke(112, 101, 68);
     line(pageNum, 10, pageNum, 1000); 
-    pop();
- }
-
+ }else {
+  strokeWeight(2)
+  stroke(112, 101, 68);
+  line(pageNum, 10, pageNum, 1000); 
+    }
  
-// }
-// if (pageNum>1){
-//   stroke(80)
-// }else {
-//   stroke(200,100,50)
-// }
-//   line(pageNum, 10, pageNum, 1000), 
-//   line(pageNum, 10, pageNum, 1000), 
-//   line(pageNum, 10, pageNum, 1000),
-//    line(pageNum, 10, pageNum, 1000), 
-//    line(pageNum, 9, pageNum, 1000);
+ ////////////
 
 
-
-
-/////
-  //random element 
-
-  // let randomElement = [];
-  //   for (let element0through8; element0through8<9; element0through8++){
-  //     randomElement[element0through8] = Math.floor(Math.random() * smithsonian_data.length);
-  //   }
   let randomElement0 = Math.floor(Math.random() * smithsonian_data.length);
   let randomElement1 = Math.floor(Math.random() * smithsonian_data.length);
   let randomElement2 = Math.floor(Math.random() * smithsonian_data.length);
@@ -312,21 +296,11 @@ console.log(pageNum)
   //console.log(closest);
   // RATE THE LEVEL OF EROTIC CONTENT 
   console.log(goal);
-
-
-
-
-  /////MIDDLE ROW 
-  image(images[finalDisplay[1]], positionArray[7].xPosition - 5, positionArray[2].yPosition, .2 * width, .2 * images[finalDisplay[1]].height * width / images[finalDisplay[1]].width);
-
-  image(images[finalDisplay[4]], positionArray[14].xPosition, positionArray[2].yPosition, .2 * width, .2 * images[finalDisplay[4]].height * width / images[finalDisplay[4]].width);
-
-  image(images[finalDisplay[7]], positionArray[15].xPosition + 5, positionArray[2].yPosition, .2 * width, .2 * images[finalDisplay[7]].height * width / images[finalDisplay[7]].width);
-
   ///
+
   let display0 = .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width;
   let display1 = .2 * images[finalDisplay[1]].height * width / images[finalDisplay[1]].width;
- // let display2 = .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width;
+  let display2 = .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width;
   let display3 = .2 * images[finalDisplay[3]].height * width / images[finalDisplay[3]].width;
   let display4 = .2 * images[finalDisplay[4]].height * width / images[finalDisplay[4]].width;
  // let display5 = .2 * images[finalDisplay[5]].height * width / images[finalDisplay[5]].width;
@@ -334,30 +308,75 @@ console.log(pageNum)
   let display7 = .2 * images[finalDisplay[7]].height * width / images[finalDisplay[7]].width;
  // let display8 = .2 * images[finalDisplay[8]].height * width / images[finalDisplay[8]].width;
 
+
+
+
+  /////MIDDLE ROW 
+  if(display0>275&&display1>275&&display2>275){
+  image(images[finalDisplay[1]], positionArray[7].xPosition - 5, positionArray[2].yPosition-35, .2 * width, .2 * images[finalDisplay[1]].height * width / images[finalDisplay[1]].width);
+} 
+else if (display1>275 && display2>275){
+  image(images[finalDisplay[1]], positionArray[7].xPosition - 5, positionArray[2].yPosition -25, .2 * width, .2 * images[finalDisplay[1]].height * width / images[finalDisplay[1]].width);
+
+}
+else {
+  image(images[finalDisplay[1]], positionArray[7].xPosition - 5, positionArray[2].yPosition, .2 * width, .2 * images[finalDisplay[1]].height * width / images[finalDisplay[1]].width);
+
+}
+
+////
+  image(images[finalDisplay[4]], positionArray[14].xPosition, positionArray[2].yPosition, .2 * width, .2 * images[finalDisplay[4]].height * width / images[finalDisplay[4]].width);
+
+  image(images[finalDisplay[7]], positionArray[15].xPosition + 5, positionArray[2].yPosition, .2 * width, .2 * images[finalDisplay[7]].height * width / images[finalDisplay[7]].width);
+/////
+
   ///COlUMN 1 
 
   console.log(display0);
   if (display0 > 200 && display0 < 275) {
     image(images[finalDisplay[0]], positionArray[7].xPosition - 5, positionArray[1].yPosition - 65, .2 * width, .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width);
-  } else if (display0 > 275) {
-    image(images[finalDisplay[0]], positionArray[7].xPosition - 5, positionArray[1].yPosition - 100, .2 * width, .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width);
+  } 
+  else if (display0 > 275) {
+    image(images[finalDisplay[0]], positionArray[7].xPosition - 5, positionArray[1].yPosition - 105, .2 * width, .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width);
+  
+  } 
+  else if (display1>275 && display2>275 &&display0<275){
+    image(images[finalDisplay[0]], positionArray[7].xPosition - 5, positionArray[1].yPosition - 120, .2 * width, .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width);
 
-  } else {
+  }
+  // else if(display0>275&&display1>275&&display2>275){
+  //   image(images[finalDisplay[0]], positionArray[7].xPosition - 5, positionArray[1].yPosition - 110, .2 * width, .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width);
+
+  // }
+  else {
     image(images[finalDisplay[0]], positionArray[7].xPosition - 5, positionArray[1].yPosition + 50, .2 * width, .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width);
   }////////3rd x3
 
 
   if (display1 > 200 && display1 < 275) {
     image(images[finalDisplay[2]], positionArray[7].xPosition - 5, positionArray[3].yPosition + 65, .2 * width, .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width);
-  } else if (display1 > 275) {
+  }
+     else if (display1 > 275 && display2 <275) {
     image(images[finalDisplay[2]], positionArray[7].xPosition - 5, positionArray[3].yPosition + 95, .2 * width, .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width);
+  }
+    else if (display1>275 && display2>275){
+      image(images[finalDisplay[2]], positionArray[7].xPosition - 5, positionArray[3].yPosition + 65, .2 * width, .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width);
 
-  } else if (display1 > 50 && display1 < 100) {
+    }
+    else if (display1 > 50 && display1 < 100) {
     image(images[finalDisplay[2]], positionArray[7].xPosition - 5, positionArray[3].yPosition - 115, .2 * width, .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width);
 
   } else {
     image(images[finalDisplay[2]], positionArray[7].xPosition - 5, positionArray[3].yPosition - 50, .2 * width, .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width);
   }
+
+//  if(display1>275 && display2>275 && display0>275){
+//     image(images[finalDisplay[0]], positionArray[7].xPosition - 5, positionArray[1].yPosition - 155, .2 * width, .2 * images[finalDisplay[0]].height * width / images[finalDisplay[0]].width);
+//     image(images[finalDisplay[1]], positionArray[7].xPosition - 5, positionArray[2].yPosition-55, .2 * width, .2 * images[finalDisplay[1]].height * width / images[finalDisplay[1]].width);
+//     image(images[finalDisplay[2]], positionArray[7].xPosition - 5, positionArray[3].yPosition+45 , .2 * width, .2 * images[finalDisplay[2]].height * width / images[finalDisplay[2]].width);
+
+//   }
+
 
   //if (display1< )
 
@@ -439,7 +458,7 @@ console.log(pageNum)
 let positionArray = [];
 console.log(positionArray)
 function draw() {
- 
+  image(images[26],15,150,width-28,0);
 
   const blockBlock = 5;
   //background(50, 50, 50);
