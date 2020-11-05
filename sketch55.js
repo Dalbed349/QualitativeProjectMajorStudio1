@@ -9,6 +9,7 @@ let sliderMean;
 var para;
 let h1;
 let Curves;
+let pageNum = 0;
 // let redArrow;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,6 +39,7 @@ function setup() {
   // left side 'book'
   stroke(80)
   line(1, 10, 2, 1000), line(3, 10, 3, 1000), line(5, 10, 5, 1000), line(7, 10, 7, 1000), line(9, 9, 9, 1000);
+
   push()
   stroke(112, 101, 68)
   strokeWeight(3)
@@ -116,7 +118,6 @@ function setup() {
   getAverage(smithsonian_data);
 
   noLoop();
-  console.log(smithsonian_data[1].rating)
 
 
 }/// end setup
@@ -151,6 +152,7 @@ let displayImages = [];
 //////////////////////////////////////////////////////////////////////////////
 
 function mouseClicked() {
+
   clear();
   background(50);
   push()
@@ -205,6 +207,35 @@ function mouseClicked() {
   //  curve(0, 1000, 15, 899, 885, 899, 895, 1000);
 
   pop();
+////////////Page Turn
+
+pageNum++;
+console.log(pageNum)
+ if(pageNum>5){
+    pageNum = 0;
+    push();
+    stroke(200,100,50);
+    line(pageNum, 10, pageNum, 1000); 
+    pop();
+ }
+
+ 
+// }
+// if (pageNum>1){
+//   stroke(80)
+// }else {
+//   stroke(200,100,50)
+// }
+//   line(pageNum, 10, pageNum, 1000), 
+//   line(pageNum, 10, pageNum, 1000), 
+//   line(pageNum, 10, pageNum, 1000),
+//    line(pageNum, 10, pageNum, 1000), 
+//    line(pageNum, 9, pageNum, 1000);
+
+
+
+
+/////
   //random element 
 
   // let randomElement = [];
@@ -408,6 +439,7 @@ function mouseClicked() {
 let positionArray = [];
 console.log(positionArray)
 function draw() {
+ 
 
   const blockBlock = 5;
   //background(50, 50, 50);
